@@ -1,0 +1,33 @@
+# Mock profile for loopback testing (no hardware required)
+mock:
+  description: "Mock capture for testing (no real device)"
+  capture:
+    backend: mock
+    resolution: [1920, 1080]
+    fps: 60
+    device_index: -1
+  codec:
+    cell_size: 8
+    num_colors: 8
+    colors:
+      - [0, 0, 0]
+      - [255, 0, 0]
+      - [0, 255, 0]
+      - [0, 0, 255]
+      - [255, 255, 0]
+      - [255, 0, 255]
+      - [0, 255, 255]
+      - [255, 255, 255]
+    ecc_redundancy: 0.10
+    frame_header_size: 8
+  display:
+    resolution: [1920, 1080]
+    fps: 60
+    vsync: false
+    fullscreen: false
+  features:
+    use_anchors: false
+    perspective_correction: false
+    color_normalization: false
+    reference_patches: false
+  throughput_estimate: "N/A (mock)"

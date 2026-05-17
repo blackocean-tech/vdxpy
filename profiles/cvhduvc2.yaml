@@ -1,0 +1,35 @@
+# USB2.0 MJPEG capture device (USB-CVHDUVC2)
+# Tested with: CVHDUVC2, ELECOM-compatible, and similar USB2.0 MJPEG devices
+# Expected throughput: ~100 KB/s
+cvhduvc2:
+  description: "USB2.0 MJPEG capture (USB-CVHDUVC2)"
+  capture:
+    backend: mjpeg
+    resolution: [1920, 1080]
+    fps: 30
+    device_index: 0
+  codec:
+    cell_size: 8           # Aligned to MJPEG 8x8 DCT block boundary
+    num_colors: 8          # BGR cube vertices — max colors before chroma interference
+    colors:
+      - [0, 0, 0]         # Black
+      - [255, 0, 0]       # Red
+      - [0, 255, 0]       # Green
+      - [0, 0, 255]       # Blue
+      - [255, 255, 0]     # Yellow
+      - [255, 0, 255]     # Magenta
+      - [0, 255, 255]     # Cyan
+      - [255, 255, 255]   # White
+    ecc_redundancy: 0.10   # 10% RS redundancy — minimum for reliable transfer
+    frame_header_size: 8
+  display:
+    resolution: [1920, 1080]
+    fps: 15                # 2:1 ratio (display:capture) absorbs phase jitter
+    vsync: true
+    fullscreen: true
+  features:
+    use_anchors: false
+    perspective_correction: false
+    color_normalization: false
+    reference_patches: false
+  throughput_estimate: "~100 KB/s"
